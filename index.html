@@ -10,14 +10,22 @@
 </head>
 <body>
     <h1> FLIXTER MOVIES</h1>
-    <form id = "searchMovies">
+    <form id = "searchForm">
         <label for = "movieSearch"> Search for movie here:</label>
         <input type = "text" id="movieSearch" value ="" name = "movieSearch" placeholder = "Search">
         <button type = "submit" id = "submitButton"> Load Movies!</button>
     </form>
 
+    <!-- Where the movies that were searched will be displayed -->
     <div class="movieResults">
-   
+        Here goes the searched movies
     </div>
+
+    <!-- Where the now playing movies will be displayed -->
+    <div id="nowPlayingMovies">
+        <div class= "movieDisplay" id= "movie-display"> </div>
+    </div>
+
+    <button id = "loadMoreButton"> Load More!</button>
 </body>
 </html>
