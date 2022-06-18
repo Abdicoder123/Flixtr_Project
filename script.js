@@ -5,7 +5,7 @@ let search_movie = '';
 //API key and all the urls being used in the project, I'm thinking of a different route then hard coding.
 const apiKey= "be8ae1c7519989b52d8ecbf396d76b45";
 const now_playing_url = "https://api.themoviedb.org/3/movie/now_playing?&api_key=";
-var moviePoster = `https://www.themoviedb.org/t/p/w440_and_h660_face`;
+const moviePoster = `https://www.themoviedb.org/t/p/w440_and_h660_face`;
 const search_movie_url = 'https://api.themoviedb.org/3/search/movie?api_key=';
 
 // Using DOM to create a reference for each item
@@ -20,11 +20,10 @@ const movieDisplay = document.querySelector("#movie-display");
 
 // What we first see on the page
 async function firstPage(event){
-    event.preventDefault();
     const response = await fetch(search_movie_url + apiKey + "&query=" + event + "&page=" + page_num);
     const responseData = await response.json();
     const data = responseData.results
-    //console.log("hey")git
+    console.log(data)
     data.forEach(element => displayMovie(element));
 
 }
@@ -68,9 +67,10 @@ async function getResults(){
 
 // Image is not displaying at all ?
 function displayMovie (event){
+
     movieDisplay.innerHTML += `
     <div class ="movies"
-        <img class="movie-poster" src = "https://image.tmdb.org/t/p/w500${event.poster_path} "alt=${event.title} />
+        <img class="movie-poster" src = "https://image.tmdb.org/t/p/w500${event.poster_path}alt=${event.title}" />
         <div class = "movie-details"
         <span class = "movie-title" style=color: blue; ">${event.title}</span>
         <div class id = "movieVotes">
