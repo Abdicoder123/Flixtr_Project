@@ -12,9 +12,12 @@ const search_movie_url = 'https://api.themoviedb.org/3/search/movie?api_key=';
 //const movieSearch = document.querySelector("#movieSearch");
 const submitButton = document.querySelector("#submitButton");
 const movieResults = document.querySelector(".movieResults");
-const movieInput = document.querySelector("#movieSearch");
+const movieInput = document.querySelector("#search-input");
 const searchForm = document.querySelector("#searchForm");
-const movieDisplay = document.querySelector("#movie-display");
+const movieDisplay = document.querySelector("#movie-card");
+const moreMovies = document.querySelector("#load-more-movies-btn");
+const clearMovies = document.querySelector(".clear-search");
+
  //API URL
 //var api_url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearch}&pages=1&include_adult=false`;
 
@@ -27,12 +30,12 @@ async function firstPage(event){
     data.forEach(element => displayMovie(element));
 
 }
-
+// Displays now playing
 async function getResults(){
     const api_url = now_playing_url + apiKey + "&q=" +  search_movie + "&language=en-US&page=" + page_num;
     const response = await fetch(api_url);
     const responseData = await response.json();
-    const data = responseData.results
+    const data = responseData.results;
     data.forEach(element => displayMovie(element));
 }
 // This function is one that gets results from the API and it uses the fetch method with my custom HTTP request.
@@ -66,20 +69,42 @@ async function getResults(){
 //     }
 
 // Image is not displaying at all ?
-function displayMovie (event){
+function displayMovie(event) {
+    movieDisplay.innerHTML+= `
+    <div class="movies">
+    <img class="movie-poster" src="https://image.tmdb.org/t/p/w500${event.poster_path} "alt=${event.title} width="190"/>
+    <div class="movieDetails">
+        <span class ="movie-title" style="color: black; "> ${event.title}</span> 
+        <div class="movie-vote-wrapper">
+        <span id="movie-votes" style="color: ${(event.vote_average)};">${event.vote_average}<i style="color:${event.vote_average};" class="fa fa-star"></i> </span>
+        </div> 
+    </div>
+    </div>
+    `
+}
 
-    movieDisplay.innerHTML += `
-    <div class ="movies"
-        <img class="movie-poster" src = "https://image.tmdb.org/t/p/w500${event.poster_path}alt=${event.title}" />
-        <div class = "movie-details"
-        <span class = "movie-title" style=color: blue; ">${event.title}</span>
-        <div class id = "movieVotes">
-            <span id = movie-votes" style= "color: white ; ${(event.vote_average)};> ${event.vote_average}<i style = "color:
-            white; ${event.vote_average};" class= "ratings" ></i> </span>
-            </div>
-            </div>
-            </div> 
-            `
+moreMovies.addEventListener('click', getMoreMovies);
+function getMoreMovies(event){
+    event.preventDefault();
+    page_num++ ;
+    if(movieInput.value == ''){
+
+        getResults();
+    }
+
+    else{
+        page_num++ ;
+        firstPage(movieInput.value);
+    }
+}
+
+clearMovies.addEventListener('click', clearBtn)
+function clearBtn(event){
+    if(movieInput.value){
+        movieInput.value = "";
+        movieDisplay.innerHTML = "";
+        getResults(event);
+    }
 }
 
 async function submit(event){
