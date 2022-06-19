@@ -4,14 +4,24 @@ body{
     font-family: 'Times New Roman', Times, serif;
     text-align: center;
 }
+h1{
+    border-style: solid;
+    border-color: red;
+    border-width: 10px;
+}
 .movies{
+    border-style: solid;
+    border-color: white;
     padding:12px;
     margin:12px;
     display: inline-grid;
+    text-align: center;
+    font-weight:bolder;
 }
 .movieInfo{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-
+    width: 90px;
+    text-align: center;
 }
