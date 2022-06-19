@@ -1,0 +1,17 @@
+body{
+    background-color: grey;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+.movies{
+    padding:12px;
+    margin:12px;
+    display: inline-grid;
+}
+.movieInfo{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}

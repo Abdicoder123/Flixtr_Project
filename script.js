@@ -73,7 +73,7 @@ function displayMovie(event) {
     movieDisplay.innerHTML+= `
     <div class="movies">
     <img class="movie-poster" src="https://image.tmdb.org/t/p/w500${event.poster_path} "alt=${event.title} width="190"/>
-    <div class="movieDetails">
+    <div class="movieInfo">
         <span class ="movie-title" style="color: black; "> ${event.title}</span> 
         <div class="movie-vote-wrapper">
         <span id="movie-votes" style="color: ${(event.vote_average)};">${event.vote_average}<i style="color:${event.vote_average};" class="fa fa-star"></i> </span>
