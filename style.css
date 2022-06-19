@@ -8,6 +8,7 @@ h1{
     border-style: solid;
     border-color: red;
     border-width: 10px;
+    font-weight:bolder;
 }
 .movies{
     border-style: solid;
